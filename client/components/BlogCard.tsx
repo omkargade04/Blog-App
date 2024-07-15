@@ -31,7 +31,7 @@ const BlogCard = ({ blog }: BlogDataProps) => {
               ? blog.title.slice(0, 30) + "..."
               : blog.title}
           </CardTitle>
-          <CardDescription className="flex flex-col items-start text-sm text-gray-500 dark:text-gray-400 space-y-2 mb-4">
+          <CardDescription className="flex space-x-2 items-start text-sm text-gray-500 dark:text-gray-400  mb-4">
             <div className="flex justify-center items-center">
               <FaRegUserCircle className="w-4 h-4 mr-1" />
               <span>{blog.author.name}</span>

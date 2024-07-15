@@ -14,19 +14,27 @@ import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { CiUser } from "react-icons/ci";
 import { IoLogoBuffer } from "react-icons/io";
-import { LuLogOut } from "react-icons/lu";
+import { LuLogOut, LuUser2 } from "react-icons/lu";
 import { Popover, PopoverTrigger } from "../ui/popover";
-import { FaAngleDown, FaAngleUp, FaSearch } from "react-icons/fa";
+import {
+  FaAngleDown,
+  FaAngleUp,
+  FaCaretDown,
+  FaCaretUp,
+  FaSearch,
+} from "react-icons/fa";
 import { PopoverContent } from "@radix-ui/react-popover";
 import { IoLogOutOutline } from "react-icons/io5";
 import { deleteCookie } from "cookies-next";
 import { toast } from "sonner";
+import { FiLogOut } from "react-icons/fi";
+import { HiOutlineChatBubbleLeftEllipsis } from "react-icons/hi2";
 
 export const Navbar = () => {
   const { authState: user } = useAuth();
   const pathName = usePathname();
   const router = useRouter();
-
+  const [showProfile, setShowProfile] = useState(false);
   const [search, setSearch] = useState("");
   const [toggle, setToggle] = useState(false);
 
@@ -75,7 +83,7 @@ export const Navbar = () => {
             />
           </div>
         </div>
-        <div className="flex pr-28 space-x-20">
+        <div className="flex md:pr-36 pr-28 space-x-20">
           <div className={pathName === "/" ? "font-semibold" : ""}>
             <Link href="/">Home</Link>
           </div>
@@ -87,46 +95,42 @@ export const Navbar = () => {
           </div>
         </div>
         {user.token ? (
-          <div className="">
-            <Popover>
-              <PopoverTrigger asChild>
+          <>
+            <div
+              className="flex items-center space-x-2 cursor-pointer bg-[#3D22CF] rounded-md p-2"
+              onClick={() => setShowProfile(!showProfile)}
+            >
+              <CiUser className="h-6 w-6 text-white" />
+              {!showProfile ? (
+                <FaCaretDown className="h-4 w-4 text-white" />
+              ) : (
+                <FaCaretUp className="h-4 w-4 text-white" />
+              )}
+            </div>
+            {showProfile && (
+              <div
+                className="absolute right-[0.5rem] md:right-[-2rem] p-2 py-1.5 z-10 bg-white mt-20 mr-28 border rounded-lg 
+                w-[10rem] h-[7rem] shadow-md flex flex-col justify-center items-center space-y-2 "
+              >
                 <div
-                  onClick={() => setToggle(!toggle)}
-                  className="bg-[#3D22CF] text-white rounded-full px-4 py-2 hover:cursor-pointer"
+                  className="flex items-center w-full
+                hover:bg-zinc-100 rounded-md p-1 hover:cursor-pointer gap-x-4 px-2 text-sm"
                 >
-                  <div className="flex justify-between items-center gap-5">
-                    <div className="">
-                      <CiUser className="h-8 w-8 pl-1" />
-                    </div>
-                    {!toggle ? (
-                      <FaAngleDown className="h-3 w-3" />
-                    ) : (
-                      <FaAngleUp className="h-3 w-3" />
-                    )}
-                  </div>
+                  <LuUser2 className={`h-4 w-4 text-primary`} />
+                  <Link href={"/dasboard"} className="text-[#333333]">
+                    {user.user.name}
+                  </Link>
                 </div>
-              </PopoverTrigger>
-              <PopoverContent className="mx-10 rounded-xl bg-white p-6">
-                <div className="space-y-4 ">
-                  <div className="">
-                    <div className="text-[#3D22CF] font-semibold">
-                      {user.user.name}
-                    </div>{" "}
-                    <div className="text-[#3D22CF] font-semibold">
-                      {user.user.email}
-                    </div>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <div className="">Logout</div>
-                    <IoLogOutOutline
-                      onClick={handleLogout}
-                      className="h-6 w-6 text-red-500 hover:cursor-pointer"
-                    />
-                  </div>
+                <div
+                  className="flex items-center w-full
+                hover:bg-zinc-100 rounded-md p-1 hover:cursor-pointer gap-x-4 px-2 text-sm"
+                >
+                  <FiLogOut className="h-4 w-4 items-start text-red-500 " />
+                  <span onClick={handleLogout}>Logout</span>
                 </div>
-              </PopoverContent>
-            </Popover>
-          </div>
+              </div>
+            )}
+          </>
         ) : (
           <div className="space-x-4 md:block md:w-auto flex items-center justify-between w-full">
             <Button size="sm" variant="outline" asChild>
