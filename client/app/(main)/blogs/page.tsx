@@ -9,9 +9,13 @@ import { useState } from "react";
 import { BlogForm } from "@/types";
 import { toast } from "sonner";
 import { redirect, useRouter } from "next/navigation";
+import { useAuth } from "@/context/Auth";
 
 const Blogs = () => {
-  const auth = localStorage.getItem("token");
+  const {authState: token} = useAuth();
+
+  const auth = token;
+
   if (!auth) {
     redirect("/signin");
   }

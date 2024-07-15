@@ -23,9 +23,13 @@ import { BlogData, BlogForm } from "@/types";
 import { handleBlogPost, userBlogs } from "@/lib/actions/blog.action";
 import { cookies } from "next/headers";
 import BlogCard from "@/components/BlogCard";
+import { useAuth } from "@/context/Auth";
 
 const Dashboard = () => {
-  const auth = localStorage.getItem("token");
+  
+  const {authState: token} = useAuth();
+
+  const auth = token;
 
   if (!auth) {
     redirect("/signin");
