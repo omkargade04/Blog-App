@@ -81,7 +81,7 @@ export const Blogs = async() => {
 export const authorBlogs = async(authorId: string) => {
     const token = cookies().get('token')?.value;
     try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/posts/${authorId}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/posts/author?author=${authorId}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

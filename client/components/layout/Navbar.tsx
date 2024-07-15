@@ -74,7 +74,7 @@ export const Navbar = () => {
               placeholder="Search by author id"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-10 pr-3 py-2 placeholder:text-sm rounded-full border 
+              className="pl-10 pr-3 py-2 placeholder:text-sm rounded-full border border-[#3D22CF] 
             focus:outline-none focus:border-[#3D22CF]"
             />
             <FaSearch
@@ -100,7 +100,7 @@ export const Navbar = () => {
               className="flex items-center space-x-2 cursor-pointer bg-[#3D22CF] rounded-md p-2"
               onClick={() => setShowProfile(!showProfile)}
             >
-              <CiUser className="h-6 w-6 text-white" />
+              <LuUser2 className="h-6 w-6 text-white" />
               {!showProfile ? (
                 <FaCaretDown className="h-4 w-4 text-white" />
               ) : (
@@ -117,7 +117,7 @@ export const Navbar = () => {
                 hover:bg-zinc-100 rounded-md p-1 hover:cursor-pointer gap-x-4 px-2 text-sm"
                 >
                   <LuUser2 className={`h-4 w-4 text-primary`} />
-                  <Link href={"/dasboard"} className="text-[#333333]">
+                  <Link href={"/dasboard"} className="text-[#3D22CF] font-semibold">
                     {user.user.name}
                   </Link>
                 </div>
@@ -126,7 +126,7 @@ export const Navbar = () => {
                 hover:bg-zinc-100 rounded-md p-1 hover:cursor-pointer gap-x-4 px-2 text-sm"
                 >
                   <FiLogOut className="h-4 w-4 items-start text-red-500 " />
-                  <span onClick={handleLogout}>Logout</span>
+                  <span onClick={handleLogout} className="text-red-500 font-semibold">Logout</span>
                 </div>
               </div>
             )}
@@ -191,7 +191,7 @@ export const Navbar = () => {
               <Link href="/blogs">Post Blog</Link>
             </div>
           </nav>
-          <SheetFooter className="pt-60  bottom-0">
+          <SheetFooter className=" pt-[20rem]  bottom-0">
             <div className="h-[5rem] w-full rounded-lg border border-slate-400 flex flex-col justify-center items-center">
               <div className="text-xl font-semibold text-[#3D22CF] ">
                 {user.user.name}

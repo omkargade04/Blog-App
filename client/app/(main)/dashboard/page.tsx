@@ -27,11 +27,10 @@ import BlogCard from "@/components/BlogCard";
 const Dashboard = () => {
   const auth = localStorage.getItem("token");
 
-  if(!auth) {
+  if (!auth) {
     redirect("/signin");
   }
 
-  const router = useRouter();
   const [blog, setBlog] = useState<BlogForm>({
     title: "",
     content: "",
@@ -76,11 +75,11 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <main className="">
-      <div className="flex flex-col lg:flex-row gap-10 p-8 lg:mx-[4rem] pt-20 justify-end border-b-2">
-        <div className="w-full lg:max-w-[60%]">
-          <div className="text-[#333333] text-[2rem] font-bold pb-2">
-            Personal Blogs
+    <main className="p-[5rem]">
+      <div className="flex flex-col md:flex-row lg:flex-row gap-10 lg:mx-[4rem] justify-end">
+        <div className="w-full lg:max-w-[60%] md:pl-10">
+          <div className="text-[#333333] text-[2rem] font-bold pb-6">
+            {/* Personal Blogs */}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[4rem]">
             {!userPosts ? (
@@ -88,13 +87,13 @@ const Dashboard = () => {
                 No personal blogs found
               </div>
             ) : (
-              <div className="text-[#3D22CF] text-[2rem] font-bold pb-10">
-                Access your blogs
+              <div className="text-[#3D22CF] text-4xl font-bold pb-10">
+                Access your personal blogs
               </div>
             )}
           </div>
         </div>
-        <div className="">
+        <div className="pr-[10rem]">
           <Card className=" rounded-xl shadow-xl md:w-full max-w-3xl flex sm:flex-col  justify-center items-center">
             <CardHeader className="text-1xl font-semibold">
               Publish your own Blogs
@@ -102,18 +101,18 @@ const Dashboard = () => {
             <CardContent>
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button className="bg-[#3D22CF] hover:bg-[#6046f3]">
+                  <Button className="bg-[#3D22CF] hover:bg-[#6046f3] text-white flex items-center gap-2">
                     <Plus />
                     Create Blog
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]">
+                <DialogContent className="sm:max-w-lg">
                   <DialogHeader>
-                    <DialogTitle className="text-lg font-bold tracking-tighter md:pt-4 pt-4 sm:text-3xl md:text-2xl text-[#3D22CF]">
+                    <DialogTitle className="text-lg font-bold text-[#3D22CF]">
                       Create a New Blog Post
                     </DialogTitle>
                   </DialogHeader>
-                  <form className="grid gap-6 w-full" onSubmit={handleSubmit}>
+                  <form className="grid gap-4" onSubmit={handleSubmit}>
                     <div className="grid gap-2">
                       <Label htmlFor="title">Title</Label>
                       <Input
@@ -121,7 +120,6 @@ const Dashboard = () => {
                         type="text"
                         value={blog.title}
                         placeholder="Enter the blog post title"
-                        className="min-h-[10px]"
                         onChange={(e) =>
                           setBlog({ ...blog, title: e.target.value })
                         }
@@ -133,13 +131,13 @@ const Dashboard = () => {
                         id="content"
                         value={blog.content}
                         placeholder="Enter the blog post content"
-                        className="min-h-[150px] sm:min-h-[250px] rounded-md"
+                        className="h-[10rem]"
                         onChange={(e) =>
                           setBlog({ ...blog, content: e.target.value })
                         }
                       />
                     </div>
-                    <div className="flex justify-end ">
+                    <div className="flex justify-end">
                       <Button type="submit" size="sm">
                         Publish
                       </Button>
@@ -155,7 +153,7 @@ const Dashboard = () => {
         {loading ? (
           <div className="w-full text-center">Loading...</div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {userPosts.length > 0 ? (
               userPosts.map((blog) => (
                 <BlogCard key={blog.postId} blog={blog} />

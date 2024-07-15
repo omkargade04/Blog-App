@@ -9,7 +9,7 @@ const SearchBlogs = ({
     };
   }) => {
   return (
-    <div>
+    <div className='p-10'>
         <SearchCard authorId={searchParams.author}/>
     </div>
   )
