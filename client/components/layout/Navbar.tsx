@@ -44,7 +44,7 @@ export const Navbar = () => {
       localStorage.removeItem("user");
       localStorage.removeItem("token");
       toast.success("Logged out successfully");
-      router.push("/login");
+      router.push("/signin");
     } catch (err: any) {}
   };
 
@@ -117,7 +117,7 @@ export const Navbar = () => {
                 hover:bg-zinc-100 rounded-md p-1 hover:cursor-pointer gap-x-4 px-2 text-sm"
                 >
                   <LuUser2 className={`h-4 w-4 text-primary`} />
-                  <Link href={"/dasboard"} className="text-[#3D22CF] font-semibold">
+                  <Link href={"/dashboard"} className="text-[#3D22CF] font-semibold">
                     {user.user.name}
                   </Link>
                 </div>
