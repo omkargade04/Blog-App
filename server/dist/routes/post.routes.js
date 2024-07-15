@@ -10,5 +10,5 @@ const router = express_1.default.Router();
 router.post("/post", user_middleware_1.isAuthenticated, createPost);
 router.get("/posts", user_middleware_1.isAuthenticated, fetchPosts);
 router.get("/posts/user", user_middleware_1.isAuthenticated, fetchUserPosts);
-router.get("/posts/:authorId", user_middleware_1.isAuthenticated, fetchAuthorPosts);
+router.get("/posts/author", user_middleware_1.isAuthenticated, fetchAuthorPosts);
 module.exports = router;

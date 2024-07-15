@@ -100,7 +100,8 @@ const fetchUserPosts = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 const fetchAuthorPosts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const authorId = parseInt(req.params.authorId, 10);
+    const authorId = parseInt(req.query.author, 10);
+    console.log(authorId);
     if (!authorId) {
         return res.status(400).json({ status: false, message: "Author ID is required" });
     }

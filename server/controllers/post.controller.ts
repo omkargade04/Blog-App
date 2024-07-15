@@ -98,7 +98,6 @@ const fetchUserPosts = async(req: ReqMid, res: any) => {
 
 const fetchAuthorPosts = async (req: ReqMid, res: any) => {
     const authorId = parseInt(req.query.author as string, 10);
-    console.log(authorId)
     if (!authorId) {
       return res.status(400).json({ status: false, message: "Author ID is required" });
     }
