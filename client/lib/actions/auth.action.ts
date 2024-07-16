@@ -1,3 +1,4 @@
+"use server";
 
 import { SigninForm, SignupForm } from "@/types";
 
