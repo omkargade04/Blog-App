@@ -39,6 +39,7 @@ const Blogs = () => {
       toast.dismiss(loadingToast);
       router.push("/dashboard");
     } catch (error: any) {
+      toast.dismiss(loadingToast);
       console.error("Posting error:", error.message);
       toast.error("Error posting blog");
     }
