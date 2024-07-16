@@ -1,6 +1,9 @@
 import { Application, urlencoded } from "express";
+import request  from "request";
 const express = require('express');
 const cors = require('cors');
+const cron = require("node-cron");
+
 const userRoutes = require('../routes/user.routes');
 const postRoutes = require('../routes/post.routes');
 
@@ -31,4 +34,13 @@ app.get("/", (req, res) => {
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
-})
+});
+
+cron.schedule("*/5 * * * *", () => {
+  console.log("Sending scheduled request at", new Date().toLocaleDateString(), "at", `${new Date().getHours()}:${new Date().getMinutes()}`);
+  request(`${process.env.SELF_URL}`, function (error: Error, response: any) {
+      if (!error && response.statusCode == 200) {
+          console.log("im okay");
+      }
+  });
+});
