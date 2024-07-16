@@ -18,7 +18,7 @@ const BlogCard = ({ blog }: BlogDataProps) => {
   };
 
   return (
-    <div className="">
+    <div className="w-full">
       <Card className="bg-white rounded-xl shadow-md overflow-hidden border">
         <CardContent className="p-4 md:p-6">
           <CardTitle className="text-3xl text-[#3D22CF] font-semibold mb-4">

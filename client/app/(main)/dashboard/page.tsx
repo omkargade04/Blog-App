@@ -83,10 +83,10 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <main className="p-[5rem]">
-      <div className="flex flex-col md:flex-row lg:flex-row gap-10 lg:mx-[4rem] justify-end">
+    <main className="md:p-[5rem]">
+      <div className="flex flex-col md:flex-row gap-10 justify-between w-full">
         <div className="w-full lg:max-w-[60%]">
-          <div className="text-[#333333] text-[2rem] font-bold pb-6"></div>
+          <div className="text-[#333333] text-sm md:text-[2rem] font-bold pb-6"></div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[4rem]">
             {!userPosts ? (
               <div className="text-[#333333] text-[1rem] font-medium">
@@ -100,7 +100,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="flex justify-center items-center">
-          <Card className=" rounded-xl shadow-xl md:w-full max-w-3xl flex-col  justify-center items-center">
+          <Card className=" rounded-xl shadow-xl md:w-full max-w-3xl flex-col justify-center items-center">
             <CardHeader className="text-1xl font-semibold">
               Publish your own Blogs
             </CardHeader>
@@ -155,7 +155,7 @@ const Dashboard = () => {
           </Card>
         </div>
       </div>
-      <div className="pt-10">
+      <div className="pt-10 w-full">
         {loading ? (
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0  justify-center items-center pl-10 sm:pl-[12rem]">
             <div className="w-full text-center">
@@ -166,7 +166,7 @@ const Dashboard = () => {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
             {userPosts.length > 0 ? (
               userPosts.map((blog) => (
                 <BlogCard key={blog.postId} blog={blog} />
