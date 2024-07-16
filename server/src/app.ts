@@ -12,6 +12,7 @@ app.use(express.json());
 const corsOptions = {
     origin: [
       "http://localhost:3000",
+      "https://blog-app-blush-one.vercel.app"
     ],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
