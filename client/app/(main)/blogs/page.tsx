@@ -12,15 +12,13 @@ import { redirect, useRouter } from "next/navigation";
 import { useAuth } from "@/context/Auth";
 
 const Blogs = () => {
-  const {authState: token} = useAuth();
+  const { authState: token } = useAuth();
 
   const auth = token;
 
   if (!auth) {
     redirect("/signin");
   }
-
-  const loadingToast = toast.loading("Posting blog...");
 
   const router = useRouter();
   const [blog, setBlog] = useState<BlogForm>({
@@ -29,17 +27,19 @@ const Blogs = () => {
   });
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const loadingToast = toast.loading("Posting blog...");
     if (blog.title === "" || blog.content === "") {
       toast.error("Please fill all fields");
       return;
     }
     try {
       const result: any = await handleBlogPost(blog);
+      if(result) {
+        toast.dismiss(loadingToast);
+      }
       toast.success("Blog posted successfully!");
-      toast.dismiss(loadingToast);
       router.push("/dashboard");
     } catch (error: any) {
-      toast.dismiss(loadingToast);
       console.error("Posting error:", error.message);
       toast.error("Error posting blog");
     }

@@ -26,8 +26,7 @@ import BlogCard from "@/components/BlogCard";
 import { useAuth } from "@/context/Auth";
 
 const Dashboard = () => {
-  
-  const {authState: token} = useAuth();
+  const { authState: token } = useAuth();
 
   const auth = token;
 
@@ -40,27 +39,26 @@ const Dashboard = () => {
     content: "",
   });
 
-  const loadingToast = toast.loading("Posting blog...");
-
   const [loading, setLoading] = useState(false);
 
   const [userPosts, setUserPosts] = useState<BlogData[]>([]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const loadingToast = toast.loading("Posting blog...");
     if (blog.title === "" || blog.content === "") {
       toast.error("Please fill all fields");
       return;
     }
     try {
       const result: any = await handleBlogPost(blog);
+      if(result) {
+        toast.dismiss(loadingToast);
+      }
       toast.success("Blog posted successfully!");
       setBlog({ title: "", content: "" });
-      toast.dismiss(loadingToast);
-      toast.success("Blog posted successfully");
       window.location.reload();
     } catch (error: any) {
-      toast.dismiss(loadingToast);
       console.error("Posting error:", error.message);
       toast.error("Error posting blog");
     }
