@@ -1,4 +1,3 @@
-"use server";
 
 import { BlogForm } from "@/types";
 import { cookies } from "next/headers";

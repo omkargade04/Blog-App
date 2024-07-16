@@ -1,4 +1,3 @@
-"use server";
 
 import { SigninForm, SignupForm } from "@/types";
 
@@ -16,7 +15,6 @@ export const handleSignup = async (userData: SignupForm) => {
         const errorMessage = await response.text();
         throw new Error(errorMessage || 'Failed to sign up user.');
       }
-  
       const data = await response.json();
       return data;
     } catch (error: any) {
