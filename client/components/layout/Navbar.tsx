@@ -117,7 +117,10 @@ export const Navbar = () => {
                 hover:bg-zinc-100 rounded-md p-1 hover:cursor-pointer gap-x-4 px-2 text-sm"
                 >
                   <LuUser2 className={`h-4 w-4 text-primary`} />
-                  <Link href={"/dashboard"} className="text-[#3D22CF] font-semibold">
+                  <Link
+                    href={"/dashboard"}
+                    className="text-[#3D22CF] font-semibold"
+                  >
                     {user.user.name}
                   </Link>
                 </div>
@@ -126,7 +129,12 @@ export const Navbar = () => {
                 hover:bg-zinc-100 rounded-md p-1 hover:cursor-pointer gap-x-4 px-2 text-sm"
                 >
                   <FiLogOut className="h-4 w-4 items-start text-red-500 " />
-                  <span onClick={handleLogout} className="text-red-500 font-semibold">Logout</span>
+                  <span
+                    onClick={handleLogout}
+                    className="text-red-500 font-semibold"
+                  >
+                    Logout
+                  </span>
                 </div>
               </div>
             )}
@@ -157,41 +165,44 @@ export const Navbar = () => {
             <span className="sr-only">Toggle navigation menu</span>
           </Button>
         </SheetTrigger>
-        <SheetContent side="left">
-          <div className="flex space-x-1 border-b-2 pb-4 ">
-            <IoLogoBuffer className="h-10 w-10 p-2" />
-            <p className="font-semibold pt-2">Blogify</p>
+        <SheetContent side="left" className="flex flex-col justify-between items-start">
+          <div className="">
+            <div className="flex space-x-1 border-b-2 pb-4 ">
+              <IoLogoBuffer className="h-10 w-10 p-2" />
+              <p className="font-semibold pt-2">Blogify</p>
+            </div>
+
+            <nav className="grid gap-2 py-6 space-y-6 text-xl ">
+              <div
+                className={
+                  pathName === "/"
+                    ? "font-semibold"
+                    : "font-medium hover:text-[#6046f3]"
+                }
+              >
+                <Link href="/">Home</Link>
+              </div>
+              <div
+                className={
+                  pathName === "/dashboard"
+                    ? "font-semibold"
+                    : "font-medium hover:text-[#6046f3]"
+                }
+              >
+                <Link href="/dashboard">Dashboard</Link>
+              </div>
+              <div
+                className={
+                  pathName === "/blogs"
+                    ? "font-semibold"
+                    : "font-medium hover:text-[#6046f3]"
+                }
+              >
+                <Link href="/blogs">Post Blog</Link>
+              </div>
+            </nav>
           </div>
-          <nav className="grid gap-2 py-6 space-y-6 text-xl ">
-            <div
-              className={
-                pathName === "/"
-                  ? "font-semibold"
-                  : "font-medium hover:text-[#6046f3]"
-              }
-            >
-              <Link href="/">Home</Link>
-            </div>
-            <div
-              className={
-                pathName === "/dashboard"
-                  ? "font-semibold"
-                  : "font-medium hover:text-[#6046f3]"
-              }
-            >
-              <Link href="/dashboard">Dashboard</Link>
-            </div>
-            <div
-              className={
-                pathName === "/blogs"
-                  ? "font-semibold"
-                  : "font-medium hover:text-[#6046f3]"
-              }
-            >
-              <Link href="/blogs">Post Blog</Link>
-            </div>
-          </nav>
-          <SheetFooter className=" pt-[20rem]  bottom-0">
+          <SheetFooter className="w-full">
             <div className="h-[5rem] w-full rounded-lg border border-slate-400 flex flex-col justify-center items-center">
               <div className="text-xl font-semibold text-[#3D22CF] ">
                 {user.user.name}

@@ -18,7 +18,7 @@ const page = async () => {
 
   return (
     <div>
-      <section className="w-full pt-[5rem]">
+      <section className="w-full p-10 md:pt-[5rem]">
         <div className="container grid gap-8 px-4 md:px-6  pb-4">
           <div className="space-y-4 flex justify-center items-center flex-col">
             <h1 className="text-3xl font-bold tracking-tighter pb-8 sm:text-4xl md:text-5xl text-[#6046f3]">
@@ -29,7 +29,7 @@ const page = async () => {
             </Button>
           </div>
         </div>
-        <div className="grid grid-cols-1 p-8 md:grid-cols-2 lg:grid-cols-3 gap-[4rem] pt-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[4rem] pt-8">
           {blogs.length > 0 ? (
             blogs.map((blog: any) => <BlogCard key={blog.id} blog={blog} />)
           ) : (
