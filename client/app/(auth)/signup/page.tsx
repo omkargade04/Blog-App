@@ -36,7 +36,7 @@ const Signup = () => {
     const loadingToast = toast.loading("Registering...");
     try {
       const result = await handleSignup(user);
-      console.log(result)
+      console.log(result);
       setUserAuthInfo(result);
       const token = result.token;
       setCookie("token", token, { maxAge: 60 * 60 * 24 });
@@ -51,10 +51,10 @@ const Signup = () => {
     }
   };
   return (
-    <div className="flex justify-center p-10 items-center h-screen">
-      <div className="flex justify-center items-center p-10">
-        <Card className="border shadow-md rounded-lg  lg:py-4 flex justify-center items-center p-7">
-          <div className="">
+    <div className="flex justify-center items-center h-screen">
+      <div className="flex justify-center items-center p-4">
+        <Card className="border shadow-md rounded-lg  lg:py-4 flex justify-center items-center p-2 sm:p-10">
+          <div className="p-4 sm:p-10">
             <CardHeader className="lg:py-4 ">
               <CardTitle
                 className={`mt-1 sm:mt-6 text-center text-3xl font-bold tracking-tight text-[#3D22CF]`}
@@ -136,12 +136,12 @@ const Signup = () => {
               </div>
             </CardContent>
           </div>
-          <div className="lg:w-[40rem] hidden h-full lg:flex px-10 justify-center items-center">
+          <div className="w-full lg:w-[40rem] hidden  lg:flex bg-white px-20 justify-center items-center">
             <div className="flex flex-col md:flex-row justify-evenly">
               <div className="hidden sm:block w-auto mx-auto p-5 border-solid mt-10 ">
                 <Image
                   src={SignupImage}
-                  alt="Register Image"
+                  alt="Login Image"
                   quality={100}
                   layout="fixed"
                   height={600}

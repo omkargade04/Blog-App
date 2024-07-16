@@ -24,6 +24,7 @@ import { handleBlogPost, userBlogs } from "@/lib/actions/blog.action";
 import { cookies } from "next/headers";
 import BlogCard from "@/components/BlogCard";
 import { useAuth } from "@/context/Auth";
+import { SkeletonCard } from "@/components/SkeletonCard";
 
 const Dashboard = () => {
   const { authState: token } = useAuth();
@@ -52,7 +53,7 @@ const Dashboard = () => {
     }
     try {
       const result: any = await handleBlogPost(blog);
-      if(result) {
+      if (result) {
         toast.dismiss(loadingToast);
       }
       toast.success("Blog posted successfully!");
@@ -84,31 +85,29 @@ const Dashboard = () => {
   return (
     <main className="p-[5rem]">
       <div className="flex flex-col md:flex-row lg:flex-row gap-10 lg:mx-[4rem] justify-end">
-        <div className="w-full lg:max-w-[60%] md:pl-10">
-          <div className="text-[#333333] text-[2rem] font-bold pb-6">
-            {/* Personal Blogs */}
-          </div>
+        <div className="w-full lg:max-w-[60%]">
+          <div className="text-[#333333] text-[2rem] font-bold pb-6"></div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[4rem]">
             {!userPosts ? (
               <div className="text-[#333333] text-[1rem] font-medium">
                 No personal blogs found
               </div>
             ) : (
-              <div className="text-[#3D22CF] text-4xl font-bold pb-10">
+              <div className="text-[#3D22CF] text-4xl pl-12 sm:pl-0 font-bold pb-10">
                 Access your personal blogs
               </div>
             )}
           </div>
         </div>
-        <div className="pr-[10rem]">
-          <Card className=" rounded-xl shadow-xl md:w-full max-w-3xl flex sm:flex-col  justify-center items-center">
+        <div className="flex justify-center items-center">
+          <Card className=" rounded-xl shadow-xl md:w-full max-w-3xl flex-col  justify-center items-center">
             <CardHeader className="text-1xl font-semibold">
               Publish your own Blogs
             </CardHeader>
             <CardContent>
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button className="bg-[#3D22CF] hover:bg-[#6046f3] text-white flex items-center gap-2">
+                  <Button className="bg-[#3D22CF] hover:bg-[#6046f3] text-white sm:pl-6 sm:pr-12 flex justify-center items-center gap-2">
                     <Plus />
                     Create Blog
                   </Button>
@@ -158,7 +157,14 @@ const Dashboard = () => {
       </div>
       <div className="pt-10">
         {loading ? (
-          <div className="w-full text-center">Loading...</div>
+          <div className="sm:flex flex-col  space-y-4 sm:space-y-0 justify-center items-center pl-10 sm:pl-[12rem]">
+            <div className="w-full text-center">
+              <SkeletonCard />
+            </div>
+            <div className="w-full text-center">
+              <SkeletonCard />
+            </div>
+          </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {userPosts.length > 0 ? (
