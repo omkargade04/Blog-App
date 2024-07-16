@@ -20,6 +20,8 @@ const Blogs = () => {
     redirect("/signin");
   }
 
+  const loadingToast = toast.loading("Posting blog...");
+
   const router = useRouter();
   const [blog, setBlog] = useState<BlogForm>({
     title: "",
@@ -34,6 +36,7 @@ const Blogs = () => {
     try {
       const result: any = await handleBlogPost(blog);
       toast.success("Blog posted successfully!");
+      toast.dismiss(loadingToast);
       router.push("/dashboard");
     } catch (error: any) {
       console.error("Posting error:", error.message);

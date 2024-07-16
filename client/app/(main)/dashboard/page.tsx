@@ -40,6 +40,8 @@ const Dashboard = () => {
     content: "",
   });
 
+  const loadingToast = toast.loading("Posting blog...");
+
   const [loading, setLoading] = useState(false);
 
   const [userPosts, setUserPosts] = useState<BlogData[]>([]);
@@ -54,6 +56,8 @@ const Dashboard = () => {
       const result: any = await handleBlogPost(blog);
       toast.success("Blog posted successfully!");
       setBlog({ title: "", content: "" });
+      toast.dismiss(loadingToast);
+      toast.success("Blog posted successfully");
       window.location.reload();
     } catch (error: any) {
       console.error("Posting error:", error.message);
