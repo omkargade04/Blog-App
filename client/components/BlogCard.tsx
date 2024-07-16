@@ -21,7 +21,7 @@ const BlogCard = ({ blog }: BlogDataProps) => {
     <div className="">
       <Card className="bg-white rounded-xl shadow-md overflow-hidden border">
         <CardContent className="p-4 md:p-6">
-          <CardTitle className="text-xl text-[#3D22CF] font-semibold mb-4">
+          <CardTitle className="text-3xl text-[#3D22CF] font-semibold mb-4">
             {blog.title.length > 30
               ? blog.title.slice(0, 30) + "..."
               : blog.title}

@@ -107,7 +107,7 @@ const Dashboard = () => {
             <CardContent>
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button className="bg-[#3D22CF] hover:bg-[#6046f3] text-white sm:pl-6 sm:pr-12 flex justify-center items-center gap-2">
+                  <Button className="bg-[#3D22CF] hover:bg-[#6046f3] text-white pr-12 sm:pl-6 sm:pr-12 flex justify-center items-center gap-2">
                     <Plus />
                     Create Blog
                   </Button>
@@ -157,7 +157,7 @@ const Dashboard = () => {
       </div>
       <div className="pt-10">
         {loading ? (
-          <div className="sm:flex flex-col  space-y-4 sm:space-y-0 justify-center items-center pl-10 sm:pl-[12rem]">
+          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0  justify-center items-center pl-10 sm:pl-[12rem]">
             <div className="w-full text-center">
               <SkeletonCard />
             </div>
