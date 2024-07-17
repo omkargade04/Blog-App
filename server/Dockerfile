@@ -1,37 +1,23 @@
-FROM node:22 AS builder
-
-WORKDIR /usr/src/app
-
-COPY package*.json ./
-
-COPY prisma ./prisma
-
-COPY  tsconfig.json ./
-
-COPY src ./src
-
-# Install dependencies with retry logic
-RUN npm install || \
-    (sleep 1 && npm install) || \
-    (sleep 3 && npm install) || \
-    (sleep 5 && npm install)
-
-# Generate Prisma files
-RUN npx prisma generate
-
-# Building the project
-RUN npm run build
-
-# Production Stage
 FROM node:22
 
-# Set working directory
 WORKDIR /usr/src/app
 
-COPY --from=builder /usr/src/app .
+COPY . .
 
-# Expose the port the app runs on
-EXPOSE 10000
+RUN npm install
 
-# Start the server
-CMD ["npm", "start"]
+# Copying source code
+COPY prisma ./prisma
+COPY tsconfig.json ./
+COPY src ./src
+
+
+# Generating Prisma client
+RUN npx prisma generate
+
+# Building TypeScript code
+RUN npm run build
+
+EXPOSE 8000
+
+CMD ["node", "./dist/src/app.js"]

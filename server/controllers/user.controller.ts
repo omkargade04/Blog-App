@@ -2,7 +2,7 @@ import express, { Request, Response, Application, urlencoded } from "express";
 import { PrismaClient } from "@prisma/client";
 import { generateUserToken } from "../middlewares/user.middleware";
 import { ReqMid } from "../types/user";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 require("dotenv").config();
 
 const prisma = new PrismaClient();

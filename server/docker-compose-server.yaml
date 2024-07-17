@@ -1,3 +1,5 @@
+# docker-compose-server.yaml
+
 version: "3"
 
 services:
@@ -9,14 +11,14 @@ services:
         ports:
             - "8000:8000"
         volumes:
-            - ./usr/src/app
+            - .:/usr/src/app
             - run_vol:/var/run
             - cache_vol:/var/cache
             - tmp_vol:/tmp
         env_file:
             - .env
         command: >
-            sh -c "npm install && NODE_ENV=dev npm run dev"
+            sh -c "npm install && npx prisma generate && npm start"
         depends_on:
             - postgres
 
@@ -25,24 +27,12 @@ services:
         image: postgres
         env_file:
             - .env
+        environment:
+            POSTGRES_PASSWORD: mysecretpassword
         ports:
             - "5432:5432"
         volumes:
-            - ./db/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
-
-    prisma:
-        container_name: prisma
-        image: prismagraphql/prisma:latest
-        ports:
-            - "4466:4466"
-        environment:
-            PRISMA_CONFIG: |
-                port: 4466
-                databases:
-                  default:
-                    url: ${DATABASE_URL}
-        depends_on:
-            - postgres
+            - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
     run_vol:

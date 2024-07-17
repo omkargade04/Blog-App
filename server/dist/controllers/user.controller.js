@@ -26,7 +26,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.signin = exports.signup = void 0;
 const client_1 = require("@prisma/client");
 const user_middleware_1 = require("../middlewares/user.middleware");
-const bcrypt_1 = __importDefault(require("bcrypt"));
+const bcrypt_1 = __importDefault(require("bcryptjs"));
 require("dotenv").config();
 const prisma = new client_1.PrismaClient();
 if (prisma) {
