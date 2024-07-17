@@ -1,31 +1,34 @@
-#Dockerfile in the root directory
-
-# Use the multi-stage build to reduce the final image size
-# Stage 1: Build Stage
 FROM node:22 AS builder
 
-# Set working directory
 WORKDIR /usr/src/app
 
-
-# Copy the package.json and package-lock.json from the server folder to the working directory
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+COPY prisma ./prisma
+
+COPY  tsconfig.json ./
+
+COPY src ./src
+
+# Install dependencies with retry logic
+RUN npm install || \
+    (sleep 1 && npm install) || \
+    (sleep 3 && npm install) || \
+    (sleep 5 && npm install)
+
+# Generate Prisma files
 RUN npx prisma generate
+
+# Building the project
 RUN npm run build
 
-
-# Stage 2: Production Stage
+# Production Stage
 FROM node:22
 
 # Set working directory
 WORKDIR /usr/src/app
 
-# Copy the built files from the previous stage
 COPY --from=builder /usr/src/app .
-
 
 # Expose the port the app runs on
 EXPOSE 10000
