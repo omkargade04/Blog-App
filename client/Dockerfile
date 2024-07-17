@@ -1,21 +1,23 @@
-# Stage 1: Install dependencies
-FROM node:22-alpine AS deps
-WORKDIR /app
-COPY package.json ./
-RUN npm install -g npm@latest
-RUN npm install
+FROM node:18-alpine
 
-# Stage 2: Build the application
-FROM node:22-alpine AS builder
 WORKDIR /app
+
+COPY package.json package-lock.json ./
+
+RUN npm config set registry https://registry.npmjs.org/ \
+    && npm config set fetch-retry-mintimeout 20000 \
+    && npm config set fetch-retry-maxtimeout 120000
+
+RUN npm install tailwindcss || \
+    (sleep 1 && npm install tailwindcss) || \
+    (sleep 2 && npm install tailwindcss) || \
+    (sleep 3 && npm install tailwindcss)
+
+RUN npm install -g npm@latest && npm install
+
 COPY . .
-COPY --from=deps /app/node_modules ./node_modules
+
 RUN npm run build
 
-# Stage 3: Run the application
-FROM node:22-alpine AS runner
-WORKDIR /app
-ENV NODE_ENV production
-COPY --from=builder /app ./
-EXPOSE 3000
+# Command to run the application
 CMD ["npm", "run", "start"]
