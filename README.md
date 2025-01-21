@@ -1,4 +1,4 @@
-﻿﻿##Blog App
+# Blog App
 
 **Blog app** is a application where **users** should be authenticated and **post blogs**. The application allow users to view all the blog posts and filter/search blogs of specific author's blog by his/her author ID.
 
