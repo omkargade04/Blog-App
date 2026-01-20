@@ -164,6 +164,11 @@ const searchPosts = async (req: ReqMid, res: any) => {
       },
     });
 
+
+
+
+    
+
     return res.status(200).json({
       status: true,
       posts: posts,
