@@ -168,6 +168,7 @@ const searchPosts = async (req: ReqMid, res: any) => {
       count: posts.length,
       message: posts.length > 0 ? "Blogs found successfully" : "No blogs found matching your search",
     });
+    
   } catch (err: any) {
     console.log("Error: ", err);
     res.status(500).json({ status: false, message: "Internal server error" });
