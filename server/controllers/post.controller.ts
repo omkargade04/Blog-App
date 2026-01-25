@@ -129,10 +129,6 @@ const fetchAuthorPosts = async (req: ReqMid, res: any) => {
 const searchPosts = async (req: ReqMid, res: any) => {
   const query = req.query.q as string;
 
-  if (!query || query.trim() === "") {
-    return res.status(400).json({ status: false, message: "Search query is required" });
-  }
-
   try {
     const posts = await prisma.post.findMany({
       where: {
@@ -165,7 +161,7 @@ const searchPosts = async (req: ReqMid, res: any) => {
     });
 
     console.log(posts);
-    
+
     return res.status(200).json({
       status: true,
       posts: posts,
