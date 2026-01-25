@@ -174,6 +174,6 @@ const searchPosts = async (req: ReqMid, res: any) => {
   } finally {
     await prisma.$disconnect();
   }
-};
+}; 
 
 module.exports = { createPost, fetchPosts, fetchUserPosts, fetchAuthorPosts };
