@@ -150,7 +150,7 @@ const searchPosts = async (req: ReqMid, res: any) => {
       include: {
         author: {
           select: {
-            name: true,
+            name: true
             email: true,
           },
         },
