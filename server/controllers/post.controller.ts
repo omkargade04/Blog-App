@@ -129,6 +129,7 @@ const fetchAuthorPosts = async (req: ReqMid, res: any) => {
 const searchPosts = async (req: ReqMid, res: any) => {
   const query = req.query.q as string;
 
+  
   try {
     const posts = await prisma.post.findMany({
       where: {
