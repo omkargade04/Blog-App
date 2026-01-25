@@ -176,4 +176,5 @@ const searchPosts = async (req: ReqMid, res: any) => {
   }
 }; 
 
+
 module.exports = { createPost, fetchPosts, fetchUserPosts, fetchAuthorPosts };
