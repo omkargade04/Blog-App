@@ -156,6 +156,7 @@ const searchPosts = async (req: ReqMid, res: any) => {
           },
         },
       },
+      
       orderBy: {
         createdAt: "desc"
       },
