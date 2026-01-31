@@ -11,6 +11,7 @@ const createPost = async(req: ReqMid, res: any) => {
     if (!title || !content) {
         return res.status(400).json({ error: true, message: "All fields are required" });
     }
+    
 
     try{
         const newPost = await prisma.post.create({
