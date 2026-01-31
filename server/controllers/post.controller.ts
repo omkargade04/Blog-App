@@ -126,4 +126,58 @@ const fetchAuthorPosts = async (req: ReqMid, res: any) => {
     }
   };
 
+const searchPosts = async (req: ReqMid, res: any) => {
+  const query = req.query.q as string;
+
+  
+  try {
+    const posts = await prisma.post.findMany({
+      where: {
+        OR: [
+          {
+            title: {
+              contains: query,
+              mode: "insensitive",
+            },
+          },
+          {
+            content: {
+              contains: query,
+              mode: "insensitive",
+            },
+          },
+        ],
+      },
+      include: {
+        author: {
+          select: {
+            name: true
+            email: true,
+          },
+        },
+      },
+  
+      orderBy: {
+        createdAt: "desc"
+      },
+    });
+
+    console.log(posts);
+
+    return res.status(200).json({
+      status: true,
+      posts: posts,
+      count: posts.length,
+      message: posts.length > 0 ? "Blogs found successfully" : "No blogs found matching your search",
+    });
+
+  } catch (err: any) {
+    console.log("Error: ", err);
+    res.status(500).json({ status: false, message: "Internal server error" });
+  } finally {
+    await prisma.disconnect;
+  }
+}; 
+
+
 module.exports = { createPost, fetchPosts, fetchUserPosts, fetchAuthorPosts };
