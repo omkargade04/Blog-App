@@ -3,6 +3,7 @@ import { ReqMid } from "../types/user";
 
 const prisma = new PrismaClient();
 
+
 const createPost = async(req: ReqMid, res: any) => {
     const { title, content } = req.body;
 
