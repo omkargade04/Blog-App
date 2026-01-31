@@ -3,7 +3,6 @@ import { ReqMid } from "../types/user";
 
 const prisma = new PrismaClient();
 
-
 const createPost = async(req: ReqMid, res: any) => {
     const { title, content } = req.body;
 
@@ -181,4 +180,4 @@ const searchPosts = async (req: ReqMid, res: any) => {
 }; 
 
 
-module.exports = { createPost, fetchPosts, fetchUserPosts, fetchAuthorPosts };
+module.exports = { createPost, fetchPosts, fetchUserPosts, fetchAuthorPosts, searchPosts };
