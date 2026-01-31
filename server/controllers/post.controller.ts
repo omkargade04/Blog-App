@@ -151,7 +151,7 @@ const searchPosts = async (req: ReqMid, res: any) => {
       include: {
         author: {
           select: {
-            name: true
+            name: true,
             email: true,
           },
         },
@@ -175,9 +175,9 @@ const searchPosts = async (req: ReqMid, res: any) => {
     console.log("Error: ", err);
     res.status(500).json({ status: false, message: "Internal server error" });
   } finally {
-    await prisma.disconnect;
+    await prisma.$disconnect();
   }
 }; 
 
 
-module.exports = { createPost, fetchPosts, fetchUserPosts, fetchAuthorPosts };
+module.exports = { createPost, fetchPosts, fetchUserPosts, fetchAuthorPosts, searchPosts };
