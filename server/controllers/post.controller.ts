@@ -24,7 +24,7 @@ const createPost = async(req: ReqMid, res: any) => {
                 createdAt: new Date(),
             }
         });
-
+        console.log("New posts: ", newpost);
         return res.status(201).json({ status: true, message: "Post created successfully", post: newPost });
 
     }catch(err: any) {
@@ -47,7 +47,7 @@ const fetchPosts = async(req: ReqMid, res: any) => {
           },
         },
       });
-  
+  console.log("fetch posts: ", fetchposts);
       return res.status(200).json({
         status: true,
         data: blogs,
@@ -78,7 +78,7 @@ const fetchUserPosts = async(req: ReqMid, res: any) => {
         },
       },
     });
-
+console.log("fetch user posts: ", fetchuserpost);
     return res.status(200).json({
       status: true,
       posts: posts,
@@ -162,7 +162,7 @@ const searchPosts = async (req: ReqMid, res: any) => {
     });
 
     console.log(posts);
-
+console.log("API Key -- Aoijhdas897y234cnasoidhjawq");
     return res.status(200).json({
       status: true,
       posts: posts,
