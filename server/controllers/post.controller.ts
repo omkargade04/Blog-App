@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { ReqMid } from "../types/user"; 
+import { ReqMid } from "../types/user";
 
 const prisma = new PrismaClient();
 
